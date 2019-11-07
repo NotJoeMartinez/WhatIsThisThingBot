@@ -3,19 +3,16 @@ import os
 import praw
 import urllib.request
 from google.cloud import vision
-
+import config as cf
 
 # Reddit praw authentication
-reddit = praw.Reddit(client_id='my client id',
-                     client_secret='my client secret',
-                     user_agent='my user agent')
+reddit = praw.Reddit(client_id= cf.client_id,
+                     client_secret= cf.client_secret,
+                     user_agent=cf.user_agent,
+                     username = cf.user_agent ,
+                     password = cf.password)
 
 
-# Google vision authentication
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'path to local json file'
-
-
-replied_to = []
 
 # adds message id to replied to array
 # returnes submission url
@@ -56,3 +53,9 @@ attrs = detect_labels(get_image_uri())
 for x in reddit.inbox.mentions():
     x.reply("Lables: \n" + convert(attrs))
     print("replied to comment")
+
+
+# prints labels of mentioned image
+# for x in reddit.inbox.mentions():
+#     print("Lables: \n" + convert(attrs))
+
