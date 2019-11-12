@@ -3,14 +3,10 @@ import os
 import praw
 import urllib.request
 from google.cloud import vision
-import config as cf
+from config import reddit
 
 # Reddit praw authentication
-reddit = praw.Reddit(client_id= cf.client_id,
-                     client_secret= cf.client_secret,
-                     user_agent=cf.user_agent,
-                     username = cf.user_agent ,
-                     password = cf.password)
+
 
 
 
@@ -47,12 +43,15 @@ def convert(list):
     res = "\n".join(s)
     return res
 
-attrs = detect_labels(get_image_uri())
+# attrs = detect_labels(get_image_uri())
 
 # replies to comments with attrs 
-for x in reddit.inbox.mentions():
-    x.reply("Lables: \n" + convert(attrs))
-    print("replied to comment")
+# for x in reddit.inbox.mentions():
+#     x.reply("Lables: \n" + convert(attrs))
+#     print("replied to comment")
+
+for submission in reddit.subreddit('learnpython').hot(limit=10):
+    print(submission.title)
 
 
 # prints labels of mentioned image
