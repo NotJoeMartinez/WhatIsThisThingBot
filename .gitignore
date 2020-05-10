@@ -1,3 +1,5 @@
 env
 config.py
 .vscode
+.DS_Store
+__pycache__
