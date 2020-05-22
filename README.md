@@ -8,5 +8,3 @@ A reddit bot that uses the Google Cloud Vision API to help identify objects
 * Praw API
 * Google Vision API
 * AWS
- # META
-I'm leaving this empty repo here as a way shame myself into working on it.
